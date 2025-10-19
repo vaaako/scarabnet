@@ -1,7 +1,7 @@
 # Server Class
-**Constructor*
+**Constructor**
 - `port`: Port the server listens on
-- `max_clients`*: Maximum number of client connections
+- `max_clients`: Maximum number of client connections
 - `show_log`: If `true`, logs internal events and traffic
 ```cpp
 Server(const uint16 port, const uint16 max_clients, bool show_log = false)
@@ -102,12 +102,12 @@ if(this->show_log) {
 ### `PacketHelper`
 Converts a `Packet` into a byte vector. Used internally
 ```cpp
-`std::vector<uint8> serialize_packet(Packet& packet)`
+std::vector<uint8> serialize_packet(Packet& packet)
 ```
 
 Converts raw bytes back into a `Packet`. Used internally
 ```cpp
-`std::unique_ptr<Packet> deserialize_packet(const uint8* data, size_t size)`
+std::unique_ptr<Packet> deserialize_packet(const uint8* data, size_t size)
 ```
 
 ---

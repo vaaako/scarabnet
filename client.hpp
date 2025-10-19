@@ -4,15 +4,18 @@
 #include "enet/enet.h"
 #include <memory>
 
+
+using namespace scarabnet;
+
 class Client {
 	public:
 		Client(const bool show_log = false);
 		~Client() noexcept;
 
 		// Returns true if client is running
-		inline bool isrunning() const noexcept {
-			return this->running;
-		}
+		// inline bool isrunning() const noexcept {
+		// 	return this->running;
+		// }
 
 		// Returns true if client is connected to a server
 		inline bool isconnected() const noexcept {
@@ -30,7 +33,7 @@ class Client {
 		void send(const Packet& packet, const PacketFlag flag = PacketFlag::RELIABLE) const noexcept;
 
 		// Returns true if an event was processed, false otherwhise
-		bool poll_event(Event& packet) noexcept;
+		bool poll_event(Event& event) noexcept;
 
 	private:
 		// Listen to events and push to vector of events
@@ -143,11 +146,11 @@ inline void Client::send(const Packet& packet, const PacketFlag flag) const noex
 	LOG_SERVER("Sending packet of size " << packet.data.size() << "...");
 }
 
-inline bool Client::poll_event(Event& packet) noexcept {
+inline bool Client::poll_event(Event& event) noexcept {
 	if(this->events.empty()) {
 		return false;
 	}
-	packet = this->events.pop_front();
+	event = this->events.pop_front();
 	return true;
 }
 

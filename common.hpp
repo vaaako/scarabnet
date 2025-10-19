@@ -28,6 +28,7 @@ Repository: https://github.com/OneLoneCoder/Javidx9/tree/master/PixelGameEngine/
 Youtube video: https://www.youtube.com/watch?v=2hNdkYInj4g
 */
 
+namespace scarabnet {
 
 // Types of events that can be polled from the server/client
 enum class EventType : uint8 {
@@ -260,3 +261,5 @@ class TSQueue {
 		mutable std::mutex mux;
 		std::deque<T> queue;
 };
+
+} // -- END NAMESPACE

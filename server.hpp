@@ -3,6 +3,8 @@
 #include "common.hpp"
 #include <unordered_map>
 
+using namespace scarabnet;
+
 class Server {
 	public:
 		Server(const uint16 port, uint16 max_clients, bool show_log = false);
@@ -20,7 +22,7 @@ class Server {
 		void stop() noexcept;
 
 		// Returns true if an event was processed
-		bool poll_event(Event& packet) noexcept;
+		bool poll_event(Event& event) noexcept;
 
 		// Send a packet to a specific client
 		void send(const uint32 client_id, const Packet& packet, const PacketFlag flag = PacketFlag::RELIABLE) const;
@@ -102,11 +104,11 @@ inline void Server::stop() noexcept {
 	}
 }
 
-inline bool Server::poll_event(Event& packet) noexcept {
+inline bool Server::poll_event(Event& event) noexcept {
 	if(this->events.empty()) {
 		return false;
 	}
-	packet = this->events.pop_front();
+	event = this->events.pop_front();
 	return true;
 }
 

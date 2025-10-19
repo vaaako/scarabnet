@@ -1,5 +1,5 @@
 # Scarabnet 🪲
-A **header-only C++ library** for easy and minimal **UDP communication** built on top of a for of [ENet](github.com/zpl-c/enet)
+A **header-only C++ library** for easy and minimal **UDP communication** built on top of a for of [ENet](https://github.com/zpl-c/enet)
 
 Features:
 - Listening for incoming UDP packets
@@ -11,13 +11,20 @@ To use it in your project, simply copy the following files:
 - `common.hpp`
 - `server.hpp`
 - `client.hpp`
-- `enet/` from the [ENet fork](github.com/zpl-c/enet)
+- `enet/` from the [ENet fork](https://github.com/zpl-c/enet)
 
 You do **not** need to place the `enet` directory in the same folder. Just make sure your compiler can find it (e.g., using `-I` include path)
 
+Check the [documentation](documentation.md) for an overview of all avaiable methods
+
 # Usage example
+This is a simple server and client example, the client will send a simple packet every 10 seconds to the server
+
 🖥️ **Server**
 ```cpp
+// This is for demonstration purpose only
+using namespace scarabnet;
+
 int main() {
 	Server server = Server(8095, 5, true); // Port, Max Clients, Enable Logging
 	server.start(); // Start server thread
@@ -55,6 +62,9 @@ int main() {
 
 💻 **Client**
 ```cpp
+// This is for demonstration purpose only
+using namespace scarabnet;
+
 int main() {
 	Client client = Client(true);      // Enable logging
 	client.connect("127.0.0.1", 8095); // Server Address, Port
